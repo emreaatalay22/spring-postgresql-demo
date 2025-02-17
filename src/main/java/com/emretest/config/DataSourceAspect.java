@@ -17,6 +17,7 @@ public class DataSourceAspect {
         // @Transactional(readOnly = true) olan sorgular için readDataSource'a yönlendirilecek
         Transactional transactional = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(Transactional.class);
         if (transactional != null && transactional.readOnly()) {
+            System.out.println("Read DataSource: {}");
             DataSourceContextHolder.setDataSourceType("readDataSource");
         } else {
             DataSourceContextHolder.setDataSourceType("writeDataSource");
